@@ -111,110 +111,120 @@ export default function CountryPage({ countrySlug }) {
   const data = countryData[slug] || countryData['study-in-usa'];
 
   return (
-    <div style={{ backgroundColor: '#FFFFFF', paddingTop: '40px', paddingBottom: '90px' }}>
-      <div className="container">
-        
-        {/* Banner Section */}
-        <div style={{
-          backgroundColor: '#0F172A',
-          color: '#FFFFFF',
-          borderRadius: '32px',
-          padding: '60px 40px',
-          marginBottom: '60px',
-          position: 'relative',
-          overflow: 'hidden',
-          display: 'grid',
-          gridTemplateColumns: '1fr 400px',
-          gap: '40px',
-          alignItems: 'center'
-        }} className="country-hero-grid">
+    <div style={{ backgroundColor: '#FFFFFF', paddingBottom: '80px' }}>
+      <div className="container" style={{ paddingTop: '40px' }}>
 
-          <div>
+        {/* Hero Banner */}
+        <div className="country-hero-grid" style={{
+          backgroundColor: '#0F172A', color: '#FFF',
+          borderRadius: '24px', marginBottom: '44px',
+          overflow: 'hidden',
+        }}>
+          {/* Text */}
+          <div style={{ padding: 'clamp(28px,5vw,56px)' }}>
             <div style={{
-              backgroundColor: '#00C58D',
-              color: '#FFFFFF',
-              fontWeight: 800,
-              padding: '6px 18px',
-              borderRadius: '999px',
-              display: 'inline-block',
-              fontSize: '0.85rem',
-              marginBottom: '16px'
+              backgroundColor: '#00C58D', color: '#FFF',
+              fontWeight: 800, padding: '5px 16px', borderRadius: '999px',
+              display: 'inline-block', fontSize: '0.82rem', marginBottom: '14px',
             }}>
               {data.tagline}
             </div>
-            <h1 style={{ fontSize: '3.2rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '20px', lineHeight: 1.15 }}>
+            <h1 style={{
+              fontFamily: 'Outfit,sans-serif',
+              fontSize: 'clamp(1.8rem,4.5vw,3rem)',
+              fontWeight: 800, color: '#FFF',
+              marginBottom: '16px', lineHeight: 1.12,
+            }}>
               {data.title}
             </h1>
-            <p style={{ color: '#94A3B8', fontSize: '1.1rem', lineHeight: 1.7, marginBottom: '32px' }}>
+            <p style={{
+              color: '#94A3B8',
+              fontSize: 'clamp(0.875rem,2vw,1.05rem)',
+              lineHeight: 1.75, marginBottom: '28px',
+            }}>
               {data.description}
             </p>
-
-            <Link to="/free-counseling" className="btn-primary" style={{ padding: '16px 36px', fontSize: '1rem' }}>
-              APPLY FOR COUNSELING IN {data.title.toUpperCase()}
-              <ArrowRight size={16} />
+            <Link to="/free-counseling" style={{
+              display: 'inline-flex', alignItems: 'center', gap: '10px',
+              backgroundColor: '#00C58D', color: '#FFF',
+              padding: '13px 24px', borderRadius: '999px',
+              fontFamily: 'Outfit,sans-serif', fontWeight: 700,
+              fontSize: 'clamp(0.8rem,2vw,0.92rem)',
+              boxShadow: '0 8px 24px rgba(0,197,141,0.35)',
+            }}>
+              APPLY FOR COUNSELING <ArrowRight size={15} />
             </Link>
           </div>
 
-          <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
-            <img src={data.image} alt={data.title} style={{ width: '100%', height: '280px', objectFit: 'cover' }} />
+          {/* Image */}
+          <div style={{ minHeight: '220px', overflow: 'hidden' }}>
+            <img src={data.image} alt={data.title}
+              style={{ width: '100%', height: '100%', minHeight: '220px', objectFit: 'cover', display: 'block' }} />
           </div>
-
         </div>
 
-        {/* Details Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '60px' }} className="country-info-grid">
-          
-          {/* Universities & Intakes */}
-          <div style={{ backgroundColor: '#F8FAFC', borderRadius: '24px', padding: '36px', border: '1px solid #E2E8F0' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-              <Building2 size={28} color="#00C58D" />
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0F172A' }}>Top Universities & Colleges</h3>
+        {/* Details grid */}
+        <div className="country-info-grid">
+
+          <div style={{ backgroundColor: '#F8FAFC', borderRadius: '20px', padding: 'clamp(20px,4vw,32px)', border: '1px solid #E2E8F0' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
+              <Building2 size={24} color="#00C58D" />
+              <h3 style={{ fontFamily: 'Outfit,sans-serif', fontSize: 'clamp(1rem,2.5vw,1.35rem)', fontWeight: 800, color: '#0F172A' }}>
+                Top Universities & Colleges
+              </h3>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
               {data.universities.map((uni, idx) => (
-                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 700, color: '#1E293B' }}>
-                  <CheckCircle2 size={16} color="#00C58D" />
+                <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '9px', fontWeight: 700, color: '#1E293B', fontSize: '0.9rem' }}>
+                  <CheckCircle2 size={15} color="#00C58D" style={{ flexShrink: 0, marginTop: '2px' }} />
                   <span>{uni}</span>
                 </div>
               ))}
             </div>
-
-            <div style={{ borderTop: '1px solid #E2E8F0', paddingTop: '20px', marginTop: '20px' }}>
-              <div style={{ fontWeight: 800, color: '#0F172A', marginBottom: '6px' }}>Intake Seasons:</div>
-              <div style={{ color: '#475569', fontSize: '0.95rem' }}>{data.intakes}</div>
+            <div style={{ borderTop: '1px solid #E2E8F0', paddingTop: '16px' }}>
+              <div style={{ fontWeight: 800, color: '#0F172A', marginBottom: '5px', fontSize: '0.9rem' }}>Intake Seasons:</div>
+              <div style={{ color: '#475569', fontSize: '0.88rem' }}>{data.intakes}</div>
             </div>
           </div>
 
-          {/* Work Permit & Requirements */}
-          <div style={{ backgroundColor: '#F8FAFC', borderRadius: '24px', padding: '36px', border: '1px solid #E2E8F0' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-              <ShieldCheck size={28} color="#00C58D" />
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0F172A' }}>Work Visa & Admission Criteria</h3>
+          <div style={{ backgroundColor: '#F8FAFC', borderRadius: '20px', padding: 'clamp(20px,4vw,32px)', border: '1px solid #E2E8F0' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
+              <ShieldCheck size={24} color="#00C58D" />
+              <h3 style={{ fontFamily: 'Outfit,sans-serif', fontSize: 'clamp(1rem,2.5vw,1.35rem)', fontWeight: 800, color: '#0F172A' }}>
+                Work Visa & Admission Criteria
+              </h3>
             </div>
-
-            <div style={{ marginBottom: '20px' }}>
-              <div style={{ fontWeight: 800, color: '#00C58D', fontSize: '0.9rem', marginBottom: '4px' }}>POST-STUDY WORK VISA:</div>
-              <div style={{ color: '#0F172A', fontWeight: 700, fontSize: '1rem' }}>{data.postStudyWork}</div>
+            <div style={{ marginBottom: '18px' }}>
+              <div style={{ fontWeight: 700, color: '#00C58D', fontSize: '0.8rem', marginBottom: '4px' }}>POST-STUDY WORK VISA:</div>
+              <div style={{ color: '#0F172A', fontWeight: 800, fontSize: '0.95rem' }}>{data.postStudyWork}</div>
             </div>
-
-            <div style={{ marginBottom: '24px' }}>
-              <div style={{ fontWeight: 800, color: '#0F172A', marginBottom: '10px' }}>General Admission Requirements:</div>
-              {data.requirements.map((req, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.9rem', color: '#475569', marginBottom: '6px' }}>
-                  <CheckCircle2 size={14} color="#00C58D" />
-                  <span>{req}</span>
-                </div>
-              ))}
-            </div>
+            <div style={{ fontWeight: 800, color: '#0F172A', marginBottom: '10px', fontSize: '0.9rem' }}>Admission Requirements:</div>
+            {data.requirements.map((req, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.88rem', color: '#475569', marginBottom: '8px' }}>
+                <CheckCircle2 size={14} color="#00C58D" style={{ flexShrink: 0, marginTop: '2px' }} />
+                <span>{req}</span>
+              </div>
+            ))}
           </div>
-
         </div>
 
       </div>
 
       <style>{`
-        @media (max-width: 992px) {
-          .country-hero-grid, .country-info-grid { grid-template-columns: 1fr !important; }
+        .country-hero-grid {
+          display: grid;
+          grid-template-columns: 1fr 380px;
+          align-items: stretch;
+        }
+        .country-info-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+        }
+        @media (max-width: 860px) {
+          .country-hero-grid { grid-template-columns: 1fr !important; }
+          .country-hero-grid > div:last-child { min-height: 200px !important; }
+          .country-info-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>

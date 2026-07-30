@@ -1,73 +1,62 @@
+/* ═══════════════════════════════════════════════════
+   GLOBAL CSS — Mobile-First Design System
+   Breakpoints: 1024 | 768 | 640 | 480
+═══════════════════════════════════════════════════ */
+
 :root {
-  --primary: #00C58D;
+  --primary:       #00C58D;
   --primary-hover: #00A878;
   --primary-light: #E8F8F3;
-  --primary-glow: rgba(0, 197, 141, 0.25);
-  --dark-bg: #0B1320;
-  --dark-surface: #141F32;
-  --heading: #0F172A;
-  --body-text: #475569;
-  --light-gray: #F8FAFC;
-  --border-subtle: #E2E8F0;
-  
+  --dark-bg:       #0B1320;
+  --heading:       #0F172A;
+  --body-text:     #475569;
+  --border:        #E2E8F0;
+
   --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
-  
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 24px;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+
+  --radius-sm:   8px;
+  --radius-md:   14px;
+  --radius-lg:   24px;
   --radius-full: 9999px;
-  
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
-  --shadow-mint: 0 12px 30px -5px rgba(0, 197, 141, 0.35);
+
+  --shadow-sm:   0 4px 6px -1px rgba(0,0,0,0.05);
+  --shadow-md:   0 10px 25px -5px rgba(0,0,0,0.08);
+  --shadow-lg:   0 20px 35px -10px rgba(0,0,0,0.12);
+  --shadow-mint: 0 12px 30px -5px rgba(0,197,141,0.35);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font-body);
   color: var(--body-text);
-  background-color: #FFFFFF;
+  background: #fff;
   line-height: 1.6;
   overflow-x: hidden;
 }
-
-h1, h2, h3, h4, h5, h6 {
+img { max-width: 100%; display: block; }
+a  { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+h1,h2,h3,h4,h5,h6 {
   font-family: var(--font-heading);
   color: var(--heading);
   font-weight: 700;
   line-height: 1.25;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: inherit;
-}
-
+/* ── Container ── */
 .container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
 }
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+}
 
-/* Subtitle Tag Pill */
+/* ── Section helpers ── */
 .section-subtitle {
   display: inline-flex;
   align-items: center;
@@ -80,129 +69,87 @@ button {
   text-transform: uppercase;
   margin-bottom: 12px;
 }
-
-/* Section Main Heading */
 .section-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
   font-weight: 800;
   color: var(--heading);
   max-width: 650px;
   margin-bottom: 20px;
 }
 
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 1.875rem;
-  }
-}
-
-/* Button Variations */
+/* ── Buttons ── */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background-color: var(--primary);
-  color: #FFFFFF;
+  background: var(--primary);
+  color: #fff;
   font-family: var(--font-heading);
   font-weight: 700;
   padding: 14px 28px;
   border-radius: var(--radius-full);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   box-shadow: var(--shadow-mint);
+  white-space: nowrap;
 }
-
 .btn-primary:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 16px 35px -5px rgba(0, 197, 141, 0.45);
-}
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background-color: transparent;
-  color: var(--heading);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  padding: 14px 28px;
-  border-radius: var(--radius-full);
-  border: 2px solid var(--heading);
-  transition: all 0.3s ease;
-}
-
-.btn-outline:hover {
-  background-color: var(--heading);
-  color: #FFFFFF;
+  background: var(--primary-hover);
   transform: translateY(-2px);
 }
-
-.btn-circle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background-color: var(--dark-bg);
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+@media (max-width: 480px) {
+  .btn-primary { padding: 12px 20px; font-size: 0.85rem; }
 }
 
-.btn-circle:hover {
-  background-color: var(--primary);
-  transform: rotate(45deg);
-}
-
-/* Custom Floating Animations */
+/* ── Animations ── */
 @keyframes floatSlow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
 }
+.animate-float { animation: floatSlow 4s ease-in-out infinite; }
 
-.animate-float {
-  animation: floatSlow 4s ease-in-out infinite;
-}
-
-/* Ticker Infinite Scroll */
+/* ── Ticker ── */
 @keyframes ticker {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
 .ticker-wrap {
   overflow: hidden;
   white-space: nowrap;
-  background: #00C58D;
-  padding: 18px 0;
+  background: var(--primary);
+  padding: 16px 0;
 }
-
 .ticker-content {
   display: inline-flex;
   gap: 40px;
   animation: ticker 25s linear infinite;
 }
-
 .ticker-item {
   display: inline-flex;
   align-items: center;
   gap: 20px;
-  color: #FFFFFF;
+  color: #fff;
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
+@media (max-width: 480px) {
+  .ticker-item { font-size: 0.9rem; gap: 14px; }
+}
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #F1F5F9;
-}
-::-webkit-scrollbar-thumb {
-  background: #00C58D;
-  border-radius: 4px;
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F1F5F9; }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE UTILITY CLASSES
+═══════════════════════════════════════════ */
+.hide-on-mobile  { }
+.show-on-mobile  { display: none !important; }
+
+@media (max-width: 768px) {
+  .hide-on-mobile { display: none !important; }
+  .show-on-mobile { display: flex !important; }
 }

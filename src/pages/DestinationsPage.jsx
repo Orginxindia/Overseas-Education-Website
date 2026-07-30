@@ -159,149 +159,125 @@ export default function DestinationsPage() {
     : destinations.filter(d => d.country.toLowerCase().includes(selectedCountry.toLowerCase()) || d.name.toLowerCase().includes(selectedCountry.toLowerCase()));
 
   return (
-    <div style={{ backgroundColor: '#FFFFFF', paddingTop: '40px', paddingBottom: '90px' }}>
-      <div className="container">
-        
+    <div style={{ backgroundColor: '#FFFFFF', paddingBottom: '80px' }}>
+      <div className="container" style={{ paddingTop: '40px' }}>
+
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '36px' }}>
           <div className="section-subtitle">STUDY ABROAD CATALOG</div>
-          <h1 className="section-title" style={{ margin: '0 auto', fontSize: '3rem' }}>
+          <h1 style={{
+            fontFamily: 'Outfit,sans-serif',
+            fontSize: 'clamp(1.8rem,4.5vw,2.8rem)',
+            fontWeight: 800, color: '#0F172A',
+            margin: '0 auto 14px', maxWidth: '660px', lineHeight: 1.15,
+          }}>
             Choose Your Destination Country
           </h1>
-          <p style={{ color: '#64748B', maxWidth: '650px', margin: '16px auto 0', fontSize: '1.05rem' }}>
+          <p style={{ color: '#64748B', maxWidth: '600px', margin: '0 auto', fontSize: 'clamp(0.875rem,2vw,1.02rem)', lineHeight: 1.75 }}>
             Detailed country guides, intake schedules, post-study work permits, and tuition costs.
           </p>
         </div>
 
-        {/* Filter Bar */}
+        {/* Filter Bar — scrollable on mobile */}
         <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justify: 'center',
-          gap: '10px',
-          flexWrap: 'wrap',
-          marginBottom: '50px'
+          display: 'flex', alignItems: 'center',
+          gap: '8px', flexWrap: 'wrap',
+          justifyContent: 'center', marginBottom: '40px',
         }}>
-          {filterCountries.map((c) => (
-            <button
-              key={c}
-              onClick={() => setSelectedCountry(c)}
-              style={{
-                padding: '10px 20px',
-                borderRadius: '999px',
-                fontSize: '0.9rem',
-                fontWeight: 700,
-                transition: 'all 0.2s ease',
-                backgroundColor: selectedCountry === c ? '#00C58D' : '#F1F5F9',
-                color: selectedCountry === c ? '#FFFFFF' : '#475569',
-                boxShadow: selectedCountry === c ? '0 8px 20px rgba(0, 197, 141, 0.3)' : 'none'
-              }}
-            >
+          {filterCountries.map(c => (
+            <button key={c} onClick={() => setSelectedCountry(c)} style={{
+              padding: '9px 16px', borderRadius: '999px',
+              fontSize: 'clamp(0.78rem,2vw,0.9rem)', fontWeight: 700,
+              transition: 'all 0.2s',
+              backgroundColor: selectedCountry === c ? '#00C58D' : '#F1F5F9',
+              color: selectedCountry === c ? '#FFF' : '#475569',
+              border: 'none', cursor: 'pointer',
+              boxShadow: selectedCountry === c ? '0 6px 18px rgba(0,197,141,0.30)' : 'none',
+            }}>
               {c}
             </button>
           ))}
         </div>
 
-        {/* Catalog Cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '30px'
-        }} className="catalog-grid">
-          {filteredList.map((item) => (
-            <div 
-              key={item.id}
-              style={{
-                backgroundColor: '#FFFFFF',
-                borderRadius: '24px',
-                border: '1px solid #E2E8F0',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column'
-              }}
+        {/* Catalog Grid */}
+        <div className="catalog-grid">
+          {filteredList.map(item => (
+            <div key={item.id} style={{
+              backgroundColor: '#FFF', borderRadius: '20px',
+              border: '1px solid #E2E8F0',
+              boxShadow: '0 8px 26px rgba(0,0,0,0.05)',
+              overflow: 'hidden', display: 'flex', flexDirection: 'column',
+              transition: 'all 0.3s',
+            }}
+              onMouseEnter={e => { e.currentTarget.style.transform='translateY(-5px)'; e.currentTarget.style.boxShadow='0 16px 36px rgba(0,0,0,0.10)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.boxShadow='0 8px 26px rgba(0,0,0,0.05)'; }}
             >
-              <div style={{ height: '220px', position: 'relative' }}>
-                <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div style={{ height: '190px', position: 'relative', flexShrink: 0 }}>
+                <img src={item.image} alt={item.name}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 <div style={{
-                  position: 'absolute',
-                  top: '16px',
-                  left: '16px',
-                  backgroundColor: '#00C58D',
-                  color: '#FFFFFF',
-                  fontWeight: 800,
-                  padding: '6px 16px',
-                  borderRadius: '999px',
-                  fontSize: '0.85rem'
-                }}>
-                  {item.name}
-                </div>
+                  position: 'absolute', top: '12px', left: '12px',
+                  backgroundColor: '#00C58D', color: '#FFF',
+                  fontWeight: 800, padding: '5px 14px',
+                  borderRadius: '999px', fontSize: '0.8rem',
+                }}>{item.name}</div>
               </div>
 
-              <div style={{ padding: '28px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                <div style={{ color: '#00C58D', fontWeight: 800, fontSize: '0.85rem', marginBottom: '8px' }}>
-                  {item.tag}
-                </div>
-
-                <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#0F172A', marginBottom: '16px' }}>
+              <div style={{ padding: 'clamp(16px,3vw,24px)', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <div style={{ color: '#00C58D', fontWeight: 700, fontSize: '0.78rem', marginBottom: '6px' }}>{item.tag}</div>
+                <h3 style={{ fontFamily: 'Outfit,sans-serif', fontSize: 'clamp(1rem,2.5vw,1.25rem)', fontWeight: 800, color: '#0F172A', marginBottom: '14px' }}>
                   {item.name}
                 </h3>
 
                 <div style={{
-                  backgroundColor: '#F8FAFC',
-                  borderRadius: '16px',
-                  padding: '16px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '10px',
-                  fontSize: '0.85rem',
-                  color: '#475569',
-                  marginBottom: '20px'
+                  backgroundColor: '#F8FAFC', borderRadius: '12px',
+                  padding: '14px', display: 'flex', flexDirection: 'column',
+                  gap: '8px', fontSize: '0.82rem', color: '#475569', marginBottom: '16px',
                 }}>
-                  <div style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between' }}>
-                    <span>Universities:</span>
-                    <strong style={{ color: '#0F172A' }}>{item.universities}</strong>
-                  </div>
-                  <div style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between' }}>
-                    <span>Work Visa:</span>
-                    <strong style={{ color: '#00C58D' }}>{item.workPermit}</strong>
-                  </div>
-                  <div style={{ display: 'flex', justifyBetween: 'space-between', justifyContent: 'space-between' }}>
-                    <span>Avg Tuition:</span>
-                    <strong style={{ color: '#0F172A' }}>{item.avgFee}</strong>
-                  </div>
+                  {[['Universities', item.universities, '#0F172A'], ['Work Visa', item.workPermit, '#00C58D'], ['Avg Tuition', item.avgFee, '#0F172A']].map(([lbl, val, col]) => (
+                    <div key={lbl} style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap' }}>
+                      <span>{lbl}:</span>
+                      <strong style={{ color: col, textAlign: 'right' }}>{val}</strong>
+                    </div>
+                  ))}
                 </div>
 
-                <div style={{ marginBottom: '24px', flexGrow: 1 }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#0F172A', marginBottom: '10px' }}>
-                    Key Benefits:
-                  </div>
+                <div style={{ marginBottom: '18px', flexGrow: 1 }}>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#0F172A', marginBottom: '8px' }}>Key Benefits:</div>
                   {item.keyHighlights.map((h, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '0.85rem', color: '#64748B', marginBottom: '6px' }}>
-                      <CheckCircle2 size={14} color="#00C58D" style={{ marginTop: '3px', flexShrink: 0 }} />
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '7px', fontSize: '0.82rem', color: '#64748B', marginBottom: '6px' }}>
+                      <CheckCircle2 size={13} color="#00C58D" style={{ marginTop: '2px', flexShrink: 0 }} />
                       <span>{h}</span>
                     </div>
                   ))}
                 </div>
 
-                <Link 
-                  to="/free-counseling"
-                  className="btn-primary" 
-                  style={{ width: '100%', justifyContent: 'center', padding: '14px' }}
-                >
-                  APPLY FOR {item.country.toUpperCase()}
-                  <ArrowRight size={16} />
+                <Link to="/free-counseling" style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+                  backgroundColor: '#00C58D', color: '#FFF',
+                  padding: '12px', borderRadius: '999px',
+                  fontFamily: 'Outfit,sans-serif', fontWeight: 700, fontSize: '0.85rem',
+                  boxShadow: '0 6px 18px rgba(0,197,141,0.28)',
+                }}>
+                  APPLY FOR {item.country.toUpperCase()} <ArrowRight size={14} />
                 </Link>
               </div>
             </div>
           ))}
         </div>
-
       </div>
 
       <style>{`
-        @media (max-width: 992px) {
-          .catalog-grid { grid-template-columns: 1fr !important; }
+        .catalog-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+        }
+        @media (max-width: 1024px) {
+          .catalog-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 580px) {
+          .catalog-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
         }
       `}</style>
     </div>
